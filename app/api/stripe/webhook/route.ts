@@ -4,17 +4,15 @@ import { createClient } from '@supabase/supabase-js'
 import { sendBookingConfirmation, sendOwnerNotification } from '@/lib/emails'
 import { sendAgreementRequest } from '@/lib/signatures'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-04-10',
-})
-
-// Supabase admin client (service role — bypasses RLS)
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
-
 export async function POST(req: NextRequest) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2024-04-10',
+  })
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+
   const body = await req.text()
   const signature = req.headers.get('stripe-signature')!
 

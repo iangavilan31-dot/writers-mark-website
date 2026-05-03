@@ -3,13 +3,6 @@ import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 import { z } from 'zod'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
-
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 const ReviewSchema = z.object({
   clientEmail: z.string().email(),
   displayName: z.string().min(1),
@@ -21,6 +14,12 @@ const ReviewSchema = z.object({
 })
 
 export async function POST(req: NextRequest) {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+  const resend = new Resend(process.env.RESEND_API_KEY)
+
   const body = await req.json()
   const parsed = ReviewSchema.safeParse(body)
 

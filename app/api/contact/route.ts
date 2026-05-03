@@ -4,13 +4,6 @@ import { sendContactAutoReply } from '@/lib/emails'
 import { Resend } from 'resend'
 import { z } from 'zod'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
-
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 const ContactSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
@@ -20,6 +13,12 @@ const ContactSchema = z.object({
 })
 
 export async function POST(req: NextRequest) {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+  const resend = new Resend(process.env.RESEND_API_KEY)
+
   const body = await req.json()
   const parsed = ContactSchema.safeParse(body)
 
@@ -66,7 +65,7 @@ export async function POST(req: NextRequest) {
       <p style="white-space: pre-wrap; background: #f5f5f5; padding: 12px; border-radius: 4px;">${message}</p>
       <p><a href="mailto:${email}">Reply to ${name} →</a></p>
     `,
-    replyTo: email,
+    reply_to: email,
   })
 
   // Auto-reply to sender
