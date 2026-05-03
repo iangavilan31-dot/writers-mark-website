@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Reset ─────────────────────────────────── */
+@layer base {
+  :root {
+    --ink: #0F0F0F;
+    --cream: #FAFAF7;
+    --navy: #1A2744;
+    --gold: #C9A84C;
+    --muted: #6B6B6B;
+    --border: #E8E4DC;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-ink font-sans;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  }
+
+  /* Preserve reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ─── Typography ─────────────────────────────────── */
+@layer components {
+  .heading-display {
+    @apply font-serif font-bold leading-tight tracking-tight;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .heading-xl {
+    @apply font-serif font-bold;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+
+  .heading-lg {
+    @apply font-serif font-semibold;
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .heading-md {
+    @apply font-serif font-semibold;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    line-height: 1.3;
+  }
+
+  .section-label {
+    @apply font-sans font-semibold text-gold tracking-[0.1em] uppercase;
+    font-size: 0.75rem;
+  }
+
+  .body-lg {
+    @apply font-sans text-[1.0625rem] leading-[1.75] text-muted;
+  }
+
+  /* Gold accent underline on headings */
+  .heading-accented {
+    position: relative;
+    display: inline-block;
+  }
+  .heading-accented::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 48px;
+    height: 3px;
+    background-color: var(--gold);
+    border-radius: 2px;
+  }
+}
+
+/* ─── Buttons ────────────────────────────────────── */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-8 py-4 bg-gold text-ink font-sans font-semibold text-sm rounded-sm
+           transition-all duration-200 ease-out cursor-pointer select-none;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover {
+    @apply bg-gold-dark scale-[1.02];
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+  }
+  .btn-primary:active {
+    @apply scale-[0.99];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-8 py-4 bg-transparent text-ink font-sans font-semibold text-sm
+           border border-ink/30 rounded-sm transition-all duration-200 ease-out cursor-pointer select-none;
+  }
+  .btn-secondary:hover {
+    @apply bg-ink text-cream border-ink;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-1 font-sans font-medium text-sm text-ink cursor-pointer
+           transition-colors duration-150;
+    text-decoration: none;
+  }
+  .btn-ghost:hover {
+    @apply text-gold;
+  }
+  .btn-ghost:hover span {
+    text-decoration: underline;
+  }
+
+  /* Light variants (for dark bg sections) */
+  .btn-primary-light {
+    @apply btn-primary bg-gold text-navy;
+  }
+  .btn-secondary-light {
+    @apply inline-flex items-center gap-2 px-8 py-4 bg-transparent text-cream font-sans font-semibold text-sm
+           border border-cream/40 rounded-sm transition-all duration-200 ease-out cursor-pointer select-none;
+  }
+  .btn-secondary-light:hover {
+    @apply bg-cream/10 border-cream;
+  }
+}
+
+/* ─── Cards ──────────────────────────────────────── */
+@layer components {
+  .card-service {
+    @apply bg-white border border-border rounded-lg p-8 cursor-pointer
+           transition-all duration-200 ease-out;
+  }
+  .card-service:hover {
+    @apply border-gold;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .card-testimonial {
+    @apply bg-navy text-cream rounded-lg p-8;
+  }
+
+  .gold-bar {
+    @apply block w-12 h-[3px] bg-gold rounded-full mb-6;
+  }
+}
+
+/* ─── Layout ─────────────────────────────────────── */
+@layer components {
+  .container-content {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1200px;
+  }
+
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+
+  .section-padding-sm {
+    @apply py-16 md:py-20;
+  }
+}
+
+/* ─── Navigation ─────────────────────────────────── */
+@layer components {
+  .nav-scrolled {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background-color: rgba(250, 250, 247, 0.92);
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .nav-link {
+    @apply font-sans font-medium text-sm text-ink/80 transition-colors duration-150 cursor-pointer;
+  }
+  .nav-link:hover {
+    @apply text-ink;
+  }
+  .nav-link.active {
+    @apply text-gold;
+  }
+}
+
+/* ─── Forms ──────────────────────────────────────── */
+@layer components {
+  .form-input {
+    @apply w-full px-4 py-3.5 bg-white border border-border rounded-sm font-sans text-[0.9375rem] text-ink
+           placeholder:text-muted/60 transition-colors duration-150;
+    outline: none;
+  }
+  .form-input:focus {
+    @apply border-ink;
+    box-shadow: 0 0 0 3px rgba(15, 15, 15, 0.06);
+  }
+  .form-input:hover:not(:focus) {
+    @apply border-muted;
+  }
+
+  .form-label {
+    @apply block font-sans font-medium text-sm text-ink mb-2;
+  }
+
+  .form-error {
+    @apply font-sans text-xs text-red-600 mt-1;
+  }
+}
+
+/* ─── Utility ────────────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Visually hide but keep accessible */
+  .sr-only-focusable:focus {
+    @apply not-sr-only;
+  }
+
+  /* Gold shimmer effect for premium feel */
+  .shimmer-gold {
+    background: linear-gradient(
+      105deg,
+      var(--gold) 0%,
+      #e8c96a 40%,
+      var(--gold) 60%,
+      #a8872f 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Ink-on-cream texture overlay */
+  .texture-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,...");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+}
+
+/* ─── Custom Scrollbar ───────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* ─── Selection ──────────────────────────────────── */
+::selection {
+  background-color: rgba(201, 168, 76, 0.2);
+  color: var(--ink);
+}
+
+/* ─── Focus visible ──────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
