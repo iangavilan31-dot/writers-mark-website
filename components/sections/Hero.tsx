@@ -1,9 +1,14 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+
+// Tracks whether the Hero has mounted at least once in this browser session.
+// First mount (initial load / hard refresh) → underline shows instantly.
+// Subsequent mounts (client-side nav back to home) → underline animates.
+let hasHeroMountedBefore = false
 
 // Stagger animation variants
 const containerVariants = {
@@ -81,6 +86,12 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [animateUnderline] = useState(() => hasHeroMountedBefore)
+
+  useEffect(() => {
+    hasHeroMountedBefore = true
+  }, [])
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
@@ -160,9 +171,13 @@ export function Hero() {
               {/* Gold underline */}
               <motion.span
                 className="absolute bottom-1 left-0 h-[3px] bg-gold rounded-full"
-                initial={{ width: 0 }}
+                initial={{ width: animateUnderline ? 0 : '100%' }}
                 animate={{ width: '100%' }}
-                transition={{ delay: 0.9, duration: 0.6, ease: 'easeOut' }}
+                transition={
+                  animateUnderline
+                    ? { delay: 0.9, duration: 0.6, ease: 'easeOut' }
+                    : { duration: 0 }
+                }
                 aria-hidden="true"
               />
             </em>
