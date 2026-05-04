@@ -17,6 +17,11 @@ const tiles = [
     title: 'Reviews',
     desc: 'Manage submitted reviews. (Stub — reviews currently auto-approve.)',
   },
+  {
+    href: '/admin/guide',
+    title: "Owner's Guide",
+    desc: 'Plain-English walkthrough of how everything works. Start here.',
+  },
 ]
 
 export default function AdminHome() {
