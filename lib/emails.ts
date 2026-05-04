@@ -6,6 +6,9 @@ const OWNER_EMAIL = process.env.OWNER_EMAIL ?? 'owner@thewritersmark.us'
 
 // ── Shared email header/footer HTML ──────────────────────────────────────────
 
+const SITE_URL = process.env.SITE_URL ?? 'https://thewritersmark.us'
+const LOGO_URL = `${SITE_URL}/logo.jpg`
+
 function emailWrapper(content: string): string {
   return `
 <!DOCTYPE html>
@@ -17,8 +20,8 @@ function emailWrapper(content: string): string {
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background-color: #FAFAF7; font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #0F0F0F; }
     .wrapper { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
-    .header { padding: 32px 40px; background-color: #1A2744; border-radius: 8px 8px 0 0; }
-    .header-brand { font-family: Georgia, 'Times New Roman', serif; font-size: 22px; font-weight: 700; color: #FAFAF7; letter-spacing: -0.5px; }
+    .header { padding: 28px 40px; background-color: #1A2744; border-radius: 8px 8px 0 0; text-align: center; }
+    .header-logo { display: inline-block; width: 96px; height: 96px; margin-bottom: 12px; border-radius: 8px; }
     .header-tagline { font-size: 11px; color: #C9A84C; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; }
     .body { background: #FFFFFF; padding: 40px; border-left: 1px solid #E8E4DC; border-right: 1px solid #E8E4DC; }
     .footer { background: #F0EDE6; padding: 24px 40px; border-radius: 0 0 8px 8px; border: 1px solid #E8E4DC; border-top: none; }
@@ -39,7 +42,7 @@ function emailWrapper(content: string): string {
 <body>
   <div class="wrapper">
     <div class="header">
-      <div class="header-brand">The Writer's Mark</div>
+      <img src="${LOGO_URL}" alt="The Writer's Mark" class="header-logo" width="96" height="96" />
       <div class="header-tagline">Writing Doesn't Have to Suck.</div>
     </div>
     <div class="body">

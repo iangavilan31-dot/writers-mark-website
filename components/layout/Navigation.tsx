@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown } from 'lucide-react'
@@ -64,12 +65,23 @@ export function Navigation() {
             aria-label="Main navigation"
           >
             {/* Logo */}
-            <Link href="/" className="flex flex-col leading-none group" aria-label="The Writer's Mark — Home">
-              <span className="font-serif font-bold text-lg text-ink tracking-tight transition-colors group-hover:text-navy">
-                The Writer's Mark
-              </span>
-              <span className="section-label text-[10px] mt-0.5 text-gold">
-                EST. 1993
+            <Link href="/" className="flex items-center gap-3 group" aria-label="The Writer's Mark — Home">
+              <Image
+                src="/logo.jpg"
+                alt=""
+                width={44}
+                height={44}
+                priority
+                className="rounded-md"
+                aria-hidden="true"
+              />
+              <span className="flex flex-col leading-none">
+                <span className="font-serif font-bold text-lg text-ink tracking-tight transition-colors group-hover:text-navy">
+                  The Writer's Mark
+                </span>
+                <span className="section-label text-[10px] mt-0.5 text-gold">
+                  EST. 1993
+                </span>
               </span>
             </Link>
 

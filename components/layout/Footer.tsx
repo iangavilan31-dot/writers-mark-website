@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 
 const serviceLinks = [
@@ -27,11 +28,21 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand column */}
           <div className="lg:col-span-1">
-            <div className="mb-6">
-              <p className="font-serif font-bold text-xl text-cream tracking-tight leading-none">
-                The Writer's Mark
-              </p>
-              <p className="section-label text-gold text-[10px] mt-1.5">EST. 1993</p>
+            <div className="mb-6 flex items-center gap-4">
+              <Image
+                src="/logo.jpg"
+                alt=""
+                width={56}
+                height={56}
+                className="rounded-md"
+                aria-hidden="true"
+              />
+              <div>
+                <p className="font-serif font-bold text-xl text-cream tracking-tight leading-none">
+                  The Writer's Mark
+                </p>
+                <p className="section-label text-gold text-[10px] mt-1.5">EST. 1993</p>
+              </div>
             </div>
             <p className="font-sans text-sm text-cream/50 leading-relaxed mb-6">
               Writing Doesn't Have to Suck.
