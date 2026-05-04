@@ -27,32 +27,25 @@ export function middleware(req: NextRequest) {
   }
 
   // ── 2. Admin route protection ──────────────────────────────────────────────
-  if (pathname.startsWith('/admin')) {
-    // Simple basic auth check
-    const authHeader = req.headers.get('authorization')
-
-    if (!authHeader || !authHeader.startsWith('Basic ')) {
-      return new NextResponse('Authentication required', {
-        status: 401,
-        headers: {
-          'WWW-Authenticate': 'Basic realm="The Writer\'s Mark Admin"',
-        },
-      })
-    }
-
-    const base64Credentials = authHeader.slice(6)
-    const credentials = Buffer.from(base64Credentials, 'base64').toString('utf-8')
-    const [, password] = credentials.split(':')
-
-    if (password !== process.env.ADMIN_PASSWORD) {
-      return new NextResponse('Invalid credentials', {
-        status: 401,
-        headers: {
-          'WWW-Authenticate': 'Basic realm="The Writer\'s Mark Admin"',
-        },
-      })
-    }
-  }
+  // Password protection is disabled until a permanent password is configured.
+  // To enable: set ADMIN_PASSWORD in Vercel env vars and uncomment the block below.
+  //
+  // if (pathname.startsWith('/admin')) {
+  //   const authHeader = req.headers.get('authorization')
+  //   if (!authHeader || !authHeader.startsWith('Basic ')) {
+  //     return new NextResponse('Authentication required', {
+  //       status: 401,
+  //       headers: { 'WWW-Authenticate': 'Basic realm="The Writer\'s Mark Admin"' },
+  //     })
+  //   }
+  //   const [, password] = Buffer.from(authHeader.slice(6), 'base64').toString().split(':')
+  //   if (password !== process.env.ADMIN_PASSWORD) {
+  //     return new NextResponse('Invalid credentials', {
+  //       status: 401,
+  //       headers: { 'WWW-Authenticate': 'Basic realm="The Writer\'s Mark Admin"' },
+  //     })
+  //   }
+  // }
 
   // ── 3. Service-specific booking deep links ────────────────────────────────
   // /book/[service] → /book?service=[service]

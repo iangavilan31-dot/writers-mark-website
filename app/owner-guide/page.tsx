@@ -12,9 +12,9 @@ export default function OwnerGuidePage() {
 
         {/* Header */}
         <div className="mb-12 pb-8 border-b border-navy/10">
-          <p className="section-label text-gold mb-3">ADMIN · OWNER'S GUIDE</p>
+          <p className="section-label text-gold mb-3">OWNER&rsquo;S GUIDE</p>
           <h1 className="font-serif font-bold text-navy" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
-            The Writer's Mark — Owner's Guide
+            The Writer&rsquo;s Mark — Owner&rsquo;s Guide
           </h1>
           <p className="font-sans text-muted mt-3 text-lg">
             Hi Joseph — plain-English walkthrough of everything. Bookmark this page.
@@ -25,7 +25,7 @@ export default function OwnerGuidePage() {
 
           {/* Section 1 */}
           <section>
-            <h2 className="font-serif font-bold text-navy text-2xl mb-5">1. The five URLs you'll actually use</h2>
+            <h2 className="font-serif font-bold text-navy text-2xl mb-5">1. The five URLs you&rsquo;ll actually use</h2>
             <div className="overflow-x-auto rounded-sm border border-navy/10">
               <table className="w-full text-sm">
                 <thead className="bg-navy text-cream">
@@ -116,18 +116,13 @@ export default function OwnerGuidePage() {
             <h2 className="font-serif font-bold text-navy text-2xl mb-5">4. Your owner console</h2>
             <div className="space-y-4">
               <div className="bg-white border border-navy/10 rounded-sm p-5">
-                <h3 className="font-semibold text-navy mb-3">How to log in</h3>
-                <ol className="space-y-2 text-sm">
-                  <li>1. Go to <span className="font-mono text-gold">thewritersmark.us/admin</span></li>
-                  <li>2. A login box pops up.</li>
-                  <li>3. <strong>Username:</strong> anything (just type any letter, e.g. <span className="font-mono">a</span>)</li>
-                  <li>4. <strong>Password:</strong> the password Ian gave you</li>
-                </ol>
-                <p className="text-muted text-sm mt-3">Your browser remembers it for the day — you only log in once per session.</p>
+                <h3 className="font-semibold text-navy mb-3">How to get there</h3>
+                <p className="text-sm">Go to <span className="font-mono text-gold">thewritersmark.us/admin</span> — no password required right now, just click through.</p>
+                <p className="text-muted text-sm mt-2">Bookmark it for easy access.</p>
               </div>
               <div className="bg-white border border-navy/10 rounded-sm p-5">
-                <h3 className="font-semibold text-navy mb-2">Pending agreements — the main reason you'll log in</h3>
-                <p className="text-sm">Click <strong>Client Agreements</strong>. You'll see clients who have signed and are waiting on your countersignature. Click the gold <strong>"Open in Dropbox Sign"</strong> button — countersign in 30 seconds. The fully-signed PDF is automatically emailed to both you and the client.</p>
+                <h3 className="font-semibold text-navy mb-2">Pending agreements — the main reason you&rsquo;ll log in</h3>
+                <p className="text-sm">Click <strong>Client Agreements</strong>. You&rsquo;ll see clients who have signed and are waiting on your countersignature. Click the gold <strong>&ldquo;Open in Dropbox Sign&rdquo;</strong> button — countersign in 30 seconds. The fully-signed PDF is automatically emailed to both you and the client.</p>
               </div>
             </div>
           </section>
@@ -136,53 +131,45 @@ export default function OwnerGuidePage() {
           <section>
             <h2 className="font-serif font-bold text-navy text-2xl mb-5">5. One-time setups (do these once, never again)</h2>
             <div className="space-y-5">
-              {[
-                {
-                  label: 'A. Add your logo to Stripe (2 min)',
-                  steps: [
-                    'Log into dashboard.stripe.com',
-                    'Click Settings → Business → Branding',
-                    'Upload logo.jpg (Ian has the file)',
-                    'Save — every Stripe invoice now has your logo',
-                  ],
-                },
-                {
-                  label: 'B. Connect Google Calendar to Cal.com (5 min)',
-                  steps: [
-                    'When you sign up for Cal.com, it asks to connect a calendar',
-                    'Pick your Writer\'s Mark Google Calendar',
-                    'The scheduler on your site now mirrors your availability automatically',
-                  ],
-                },
-                {
-                  label: 'C. Add Ian as manager on Google Business Profile',
-                  steps: [
-                    'Go to business.google.com',
-                    'Find your Writer\'s Mark, LLC listing',
-                    'Users → Add user → enter Ian\'s email → choose Manager',
-                  ],
-                },
-              ].map(({ label, steps }) => (
-                <div key={label} className="bg-white border border-navy/10 rounded-sm p-5">
-                  <h3 className="font-semibold text-navy mb-3">{label}</h3>
-                  <ol className="space-y-1 text-sm text-muted">
-                    {steps.map((s, i) => <li key={i}>{i + 1}. {s}</li>)}
-                  </ol>
-                </div>
-              ))}
+              <div className="bg-white border border-navy/10 rounded-sm p-5">
+                <h3 className="font-semibold text-navy mb-3">A. Add your logo to Stripe (2 min)</h3>
+                <ol className="space-y-1 text-sm text-muted">
+                  <li>1. Log into <span className="font-mono">dashboard.stripe.com</span></li>
+                  <li>2. Click <strong>Settings → Business → Branding</strong></li>
+                  <li>3. Upload your logo — you can download it here: <a href="/logo.jpg" download className="text-gold underline">Download logo.jpg</a></li>
+                  <li>4. Save — every Stripe invoice now has your logo on it</li>
+                </ol>
+              </div>
+              <div className="bg-white border border-navy/10 rounded-sm p-5">
+                <h3 className="font-semibold text-navy mb-3">B. Connect Google Calendar to Cal.com (5 min)</h3>
+                <ol className="space-y-1 text-sm text-muted">
+                  <li>1. When you sign up for Cal.com, it asks to connect a calendar</li>
+                  <li>2. Pick your Writer&rsquo;s Mark Google Calendar</li>
+                  <li>3. The scheduler on your site now mirrors your availability automatically — clients can never book a slot when you&rsquo;re busy</li>
+                </ol>
+              </div>
+              <div className="bg-white border border-navy/10 rounded-sm p-5">
+                <h3 className="font-semibold text-navy mb-3">C. Verify your Google Business Profile</h3>
+                <ol className="space-y-1 text-sm text-muted">
+                  <li>1. Go to <span className="font-mono">business.google.com</span></li>
+                  <li>2. Find your Writer&rsquo;s Mark, LLC listing</li>
+                  <li>3. Make sure your hours, address, and contact info are up to date</li>
+                  <li>4. This is what shows up when people search &ldquo;writing tutor near me&rdquo;</li>
+                </ol>
+              </div>
             </div>
           </section>
 
           {/* Section 6 */}
           <section>
-            <h2 className="font-serif font-bold text-navy text-2xl mb-5">6. Quick answers to "what happens if..."</h2>
+            <h2 className="font-serif font-bold text-navy text-2xl mb-5">6. Quick answers to &ldquo;what happens if...&rdquo;</h2>
             <div className="space-y-4">
               {[
                 ['A client says they never got their booking confirmation?', "Their email provider may have flagged it as spam. Ask them to check there. The booking went through if you got the 'New Booking' notification — the appointment is on your Google Calendar."],
                 ['A client wants to reschedule?', 'They can reply to their confirmation email, or you can move the slot in Google Calendar — Cal.com syncs both ways.'],
-                ['A client doesn\'t sign the agreement?', 'They get auto-reminded by Dropbox Sign. If they decline outright, you get an email. You can cancel and refund through Stripe.'],
-                ['The site goes down?', "It's hosted on Vercel (99.99%+ uptime). If something's actually broken, email Ian — usually fixed in minutes."],
-                ['I want to update prices, descriptions, or staff bios?', 'Email Ian for now. Eventually you\'ll edit these directly through Sanity — Ian can train you in 10 minutes.'],
+                ["A client doesn't sign the agreement?", 'They get auto-reminded by Dropbox Sign. If they decline outright, you get an email. You can cancel and refund through Stripe.'],
+                ['The site goes down?', "It's hosted on Vercel (99.99%+ uptime). Outages are extremely rare and typically self-resolve within minutes."],
+                ['I want to update prices, descriptions, or staff bios?', 'Contact your developer. Eventually you\'ll be able to edit these directly through the built-in content tool — no coding required.'],
               ].map(([q, a]) => (
                 <div key={String(q)} className="bg-white border border-navy/10 rounded-sm p-5">
                   <p className="font-semibold text-navy mb-1">...{q}</p>
@@ -202,7 +189,7 @@ export default function OwnerGuidePage() {
                 'When a client signs their agreement, go to /admin/agreements and countersign in 30 seconds.',
                 'Your branded logo is on the website, every email, and the receipt page.',
                 'Reviews go live the moment a client submits them.',
-                'For anything else — email Ian.',
+                'Questions about the site? Contact your developer.',
               ].map((item, i) => (
                 <li key={i} className="flex gap-3">
                   <span className="text-gold mt-0.5">→</span>
@@ -212,7 +199,6 @@ export default function OwnerGuidePage() {
             </ul>
           </section>
 
-          <p className="text-center text-muted text-sm pb-8">— Ian</p>
         </div>
       </div>
     </div>
