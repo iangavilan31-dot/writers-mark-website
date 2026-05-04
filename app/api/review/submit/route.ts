@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
 
   const isVerified = !!booking
 
-  // Save review (pending approval)
+  // Save review (auto-approved so it appears immediately)
   const { data: review, error } = await supabase
     .from('reviews')
     .insert({
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
       rating,
       review_text: reviewText,
       would_recommend: wouldRecommend,
-      approved: false, // Owner must approve before publishing
+      approved: true,
       featured: false,
       feature_on_homepage: featureOnHomepage,
     })

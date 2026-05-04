@@ -1,13 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Star } from 'lucide-react'
 import { toast } from 'sonner'
 
 const services = ['All', 'K–12 Tutoring', 'ELA Prep', 'DSAT Prep', 'College Admissions', 'Professional Writing', 'Scientific Presentations', 'Undergraduate']
 
-const seedReviews = [
+type Review = { name: string; location?: string; service: string; rating: number; text: string }
+
+const seedReviews: Review[] = [
   { name: 'Parent of 11th Grader', location: 'Maplewood, NJ', service: 'DSAT Prep', rating: 5, text: 'My daughter went from dreading writing assignments to asking for more. Her DSAT score jumped 140 points. The Writer\'s Mark is the real deal — not tricks, actual understanding.' },
   { name: 'Environmental Consultant', location: 'Newark, NJ', service: 'Professional Writing', rating: 5, text: 'I hired them for a federal grant proposal I\'d been putting off for months. In three sessions, we had a polished, compelling narrative. We got the grant.' },
   { name: 'College Applicant', location: 'Class of 2024', service: 'College Admissions', rating: 5, text: 'My college essay was going nowhere. It went from generic to genuinely me. I got into my first choice school — a school I almost didn\'t apply to.' },
@@ -32,8 +34,23 @@ export default function ReviewsPage() {
   const [form, setForm] = useState({ clientEmail: '', displayName: '', service: '', rating: 5, reviewText: '', wouldRecommend: true, featureOnHomepage: false })
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [submittedReviews, setSubmittedReviews] = useState<Review[]>([])
 
-  const filtered = filter === 'All' ? seedReviews : seedReviews.filter(r => r.service === filter)
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/review/list', { cache: 'no-store' })
+      .then((res) => (res.ok ? res.json() : { reviews: [] }))
+      .then((data) => {
+        if (!cancelled && Array.isArray(data.reviews)) {
+          setSubmittedReviews(data.reviews)
+        }
+      })
+      .catch(() => {})
+    return () => { cancelled = true }
+  }, [])
+
+  const allReviews: Review[] = [...submittedReviews, ...seedReviews]
+  const filtered = filter === 'All' ? allReviews : allReviews.filter(r => r.service === filter)
 
   const handleReviewSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,7 +63,11 @@ export default function ReviewsPage() {
       })
       if (res.ok) {
         setSubmitted(true)
-        toast.success('Review submitted! It will be published after verification.')
+        setSubmittedReviews((prev) => [
+          { name: form.displayName, service: form.service, rating: form.rating, text: form.reviewText },
+          ...prev,
+        ])
+        toast.success('Review submitted! Thanks for sharing.')
       } else {
         toast.error('Something went wrong. Please try again.')
       }
@@ -76,7 +97,7 @@ export default function ReviewsPage() {
               ))}
             </div>
             <span className="font-serif font-bold text-gold text-2xl">4.9</span>
-            <span className="font-sans text-cream/40 text-sm">· {seedReviews.length} verified reviews</span>
+            <span className="font-sans text-cream/40 text-sm">· {allReviews.length} verified reviews</span>
           </div>
         </div>
       </section>
@@ -144,7 +165,7 @@ export default function ReviewsPage() {
               {submitted ? (
                 <div className="text-center py-6">
                   <p className="font-serif font-semibold text-xl text-ink mb-3">Thank You</p>
-                  <p className="body-lg text-sm">Your review has been submitted and will be published after verification.</p>
+                  <p className="body-lg text-sm">Your review is live. Scroll up to see it on the page.</p>
                 </div>
               ) : (
                 <form onSubmit={handleReviewSubmit} className="space-y-5" noValidate>
