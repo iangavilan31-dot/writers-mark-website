@@ -90,7 +90,7 @@ Click **"Client Agreements"** and you'll see two tables:
 
 ### What if I forget my admin password?
 
-Email Ian — he can reset it.
+Email Me — Is can reset it.
 
 ---
 
