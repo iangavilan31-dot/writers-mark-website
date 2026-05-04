@@ -47,6 +47,7 @@ export async function POST(req: NextRequest) {
         }
 
         // Notify owner to countersign
+        const adminUrl = `${process.env.SITE_URL ?? 'https://thewritersmark.us'}/admin/agreements`
         await resend.emails.send({
           from: process.env.RESEND_FROM_EMAIL!,
           to: process.env.OWNER_EMAIL!,
@@ -54,7 +55,8 @@ export async function POST(req: NextRequest) {
           html: `
             <p>A client has signed their New Client Agreement and is waiting for your countersignature.</p>
             <p>Booking ID: ${bookingId}</p>
-            <p>Please log in to Dropbox Sign to countersign: <a href="https://app.hellosign.com">app.hellosign.com</a></p>
+            <p><strong>One-click access to all pending agreements:</strong> <a href="${adminUrl}">${adminUrl}</a></p>
+            <p>Or log in to Dropbox Sign directly: <a href="https://app.hellosign.com">app.hellosign.com</a></p>
             <p>The signed document will be sent to both parties automatically once you countersign.</p>
           `,
         })
