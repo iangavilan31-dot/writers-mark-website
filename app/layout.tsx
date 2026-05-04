@@ -4,6 +4,7 @@ import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { MobileBookingBar } from '@/components/layout/MobileBookingBar'
 import { PageTransition } from '@/components/layout/PageTransition'
+import { OwnerBanner } from '@/components/ui/OwnerBanner'
 import { Toaster } from 'sonner'
 import Script from 'next/script'
 
@@ -107,6 +108,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <MobileBookingBar />
+        <OwnerBanner />
         <Toaster
           position="bottom-right"
           toastOptions={{

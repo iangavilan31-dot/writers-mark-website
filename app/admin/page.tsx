@@ -18,7 +18,7 @@ const tiles = [
     desc: 'Manage submitted reviews. (Stub — reviews currently auto-approve.)',
   },
   {
-    href: '/admin/guide',
+    href: '/owner-guide',
     title: "Owner's Guide",
     desc: 'Plain-English walkthrough of how everything works. Start here.',
   },
