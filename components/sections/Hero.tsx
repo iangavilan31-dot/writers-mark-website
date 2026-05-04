@@ -4,7 +4,6 @@ import { useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { ScrambleText } from '@/components/ui/ScrambleText'
 
 // Stagger animation variants
 const containerVariants = {
@@ -152,16 +151,18 @@ export function Hero() {
               lineHeight: 1.02,
               letterSpacing: '-0.025em',
             }}
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', repeatType: 'loop' }}
           >
-            <ScrambleText text="Writing Doesn't " delay={300} duration={1000} />
+            Writing Doesn't{' '}
             <em className="not-italic relative inline-block">
-              <ScrambleText text="Have to Suck." delay={900} duration={800} />
+              Have to Suck.
               {/* Gold underline */}
               <motion.span
                 className="absolute bottom-1 left-0 h-[3px] bg-gold rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: '100%' }}
-                transition={{ delay: 1.8, duration: 0.6, ease: 'easeOut' }}
+                transition={{ delay: 0.9, duration: 0.6, ease: 'easeOut' }}
                 aria-hidden="true"
               />
             </em>
