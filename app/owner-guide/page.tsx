@@ -168,8 +168,8 @@ export default function OwnerGuidePage() {
                 ['A client says they never got their booking confirmation?', "Their email provider may have flagged it as spam. Ask them to check there. The booking went through if you got the 'New Booking' notification — the appointment is on your Google Calendar."],
                 ['A client wants to reschedule?', 'They can reply to their confirmation email, or you can move the slot in Google Calendar — Cal.com syncs both ways.'],
                 ["A client doesn't sign the agreement?", 'They get auto-reminded by Dropbox Sign. If they decline outright, you get an email. You can cancel and refund through Stripe.'],
-                ['The site goes down?', "It's hosted on Vercel (99.99%+ uptime). Outages are extremely rare and typically self-resolve within minutes."],
-                ['I want to update prices, descriptions, or staff bios?', 'Contact your developer. Eventually you\'ll be able to edit these directly through the built-in content tool — no coding required.'],
+                ['The site goes down?', "It's hosted on Vercel (99.99%+ uptime). If something's actually broken, email me — these things are usually fixed in minutes."],
+                ['I want to update prices, descriptions, or staff bios?', "Email me for now. Eventually you'll edit these directly through the built-in content tool — I can walk you through it in 10 minutes when you're ready."],
               ].map(([q, a]) => (
                 <div key={String(q)} className="bg-white border border-navy/10 rounded-sm p-5">
                   <p className="font-semibold text-navy mb-1">...{q}</p>
@@ -189,7 +189,7 @@ export default function OwnerGuidePage() {
                 'When a client signs their agreement, go to /admin/agreements and countersign in 30 seconds.',
                 'Your branded logo is on the website, every email, and the receipt page.',
                 'Reviews go live the moment a client submits them.',
-                'Questions about the site? Contact your developer.',
+                'Questions about anything? Email me — iangavilan31@gmail.com.',
               ].map((item, i) => (
                 <li key={i} className="flex gap-3">
                   <span className="text-gold mt-0.5">→</span>
