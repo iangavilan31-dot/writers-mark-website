@@ -3,6 +3,7 @@ import './globals.css'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { MobileBookingBar } from '@/components/layout/MobileBookingBar'
+import { PageTransition } from '@/components/layout/PageTransition'
 import { Toaster } from 'sonner'
 import Script from 'next/script'
 
@@ -101,7 +102,9 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <Navigation />
-        <main id="main-content">{children}</main>
+        <main id="main-content">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
         <MobileBookingBar />
         <Toaster
